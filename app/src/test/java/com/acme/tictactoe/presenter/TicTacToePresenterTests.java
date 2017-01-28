@@ -1,6 +1,7 @@
 package com.acme.tictactoe.presenter;
 
 
+import com.acme.tictactoe.model.TicTacToeModel;
 import com.acme.tictactoe.view.TicTacToeView;
 
 import org.junit.Before;
@@ -26,7 +27,7 @@ public class TicTacToePresenterTests {
 
     @Before
     public void setup() {
-        presenter = new TicTacToePresenter(view);
+        presenter = new TicTacToePresenter(new TicTacToeModel(), view);
     }
 
     private void clickAndAssertValueAt(int row, int col, String expectedValue) {
