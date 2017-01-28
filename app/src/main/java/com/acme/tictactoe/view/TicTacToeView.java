@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.acme.tictactoe.R;
+import com.google.auto.value.AutoValue;
 import com.squareup.otto.Bus;
 
 import java.lang.ref.WeakReference;
@@ -64,27 +65,18 @@ public class TicTacToeView {
         int row = Integer.valueOf(tag.substring(0,1));
         int col = Integer.valueOf(tag.substring(1,2));
         Log.i(TAG, "Click Row: [" + row + "," + col + "]");
-        bus.post(new CellClickedEvent(row, col));
+        bus.post(CellClickedEvent.create(row, col));
     }
 
     // Events published
 
-    public static class CellClickedEvent {
-        private int row;
-        private int col;
+    @AutoValue
+    abstract public static class CellClickedEvent {
+        public abstract int row();
+        public abstract int col();
 
-        public CellClickedEvent(int row, int col) {
-            this.row = row;
-            this.col = col;
-        }
-
-        public int getRow() {
-            return row;
-        }
-
-        public int getCol() {
-            return col;
+        static CellClickedEvent create(int row, int col) {
+            return new AutoValue_TicTacToeView_CellClickedEvent(row, col);
         }
     }
-
 }

@@ -24,7 +24,7 @@ public class TicTacToePresenter {
 
     @Subscribe
     public void onCellClicked(CellClickedEvent event) {
-        onButtonSelected(event.getRow(), event.getCol());
+        onButtonSelected(event.row(), event.col());
     }
 
     public void onButtonSelected(int row, int col) {
